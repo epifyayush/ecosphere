@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoSphere - Small Actions. Big Impact.</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container">
+            <div class="nav-brand">
+                <i class="fas fa-globe-americas nav-logo-icon"></i>
+                <span class="nav-logo-text">EcoSphere</span>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="#home" class="nav-link active" data-page="home">Home</a>
+                <a href="#tracker" class="nav-link" data-page="tracker">Carbon Tracker</a>
+                <a href="#marketplace" class="nav-link" data-page="marketplace">Marketplace</a>
+                <a href="#dashboard" class="nav-link" data-page="dashboard">Dashboard</a>
+                <a href="#community" class="nav-link" data-page="community">Community</a>
+                <a href="#contact" class="nav-link" data-page="contact">Contact</a>
+            </div>
+            <div class="user-tokens">
+                <i class="fas fa-coins"></i>
+                <span id="user-token-count">0</span> EcoTokens
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- HOME PAGE -->
+        <section id="home" class="page page--active">
+            <!-- Hero Section -->
+            <div class="hero">
+                <div class="container">
+                    <div class="hero-content">
+                        <h1 class="hero-title">Small Actions. Big Impact.</h1>
+                        <p class="hero-description">
+                            Track your carbon footprint in real-time, earn EcoTokens for sustainable actions, and make a difference in the fight against climate change.
+                        </p>
+                        <div class="hero-buttons">
+                            <button class="btn btn--primary btn--lg" data-page="tracker">Start Tracking Now</button>
+                            <button class="btn btn--outline btn--lg" data-page="marketplace">Explore Marketplace</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Live Stats Section -->
+            <div class="stats-section">
+                <div class="container">
+                    <h2 class="section-title">Global Impact Live</h2>
+                    <div class="stats-grid" id="live-stats">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="stat-number" id="live-users">2,847,392</div>
+                            <div class="stat-label">Active Users</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-leaf"></i>
+                            </div>
+                            <div class="stat-number" id="live-co2">1,249,847</div>
+                            <div class="stat-label">Tons CO₂ Saved</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-tree"></i>
+                            </div>
+                            <div class="stat-number" id="live-trees">847,291</div>
+                            <div class="stat-label">Trees Planted</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-coins"></i>
+                            </div>
+                            <div class="stat-number" id="live-tokens">94,827,503</div>
+                            <div class="stat-label">EcoTokens Earned</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <div class="container">
+                    <h2 class="section-title">Quick Actions</h2>
+                    <div class="action-grid">
+                        <div class="action-card" data-page="tracker">
+                            <i class="fas fa-calculator"></i>
+                            <h3>Log Activity</h3>
+                            <p>Track your daily eco-friendly actions</p>
+                        </div>
+                        <div class="action-card" data-page="marketplace">
+                            <i class="fas fa-store"></i>
+                            <h3>Shop Eco</h3>
+                            <p>Use tokens for sustainable products</p>
+                        </div>
+                        <div class="action-card" data-page="community">
+                            <i class="fas fa-trophy"></i>
+                            <h3>Join Challenge</h3>
+                            <p>Compete with eco-warriors globally</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CARBON TRACKER PAGE -->
+        <section id="tracker" class="page">
+            <div class="page-header">
+                <div class="container">
+                    <h1 class="page-title">Carbon Tracker</h1>
+                    <p class="page-description">Log your eco-friendly actions and see real-time CO₂ impact</p>
+                    <div class="location-status" id="location-status">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Detecting location...</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tracker-content">
+                <div class="container">
+                    <div class="tracker-grid">
+                        <!-- Activity Logger -->
+                        <div class="tracker-section">
+                            <div class="card">
+                                <div class="card__header">
+                                    <h3>Log Activity</h3>
+                                </div>
+                                <div class="card__body">
+                                    <div class="form-group">
+                                        <label class="form-label">Category</label>
+                                        <select id="activity-category" class="form-control">
+                                            <option value="">Select category</option>
+                                            <option value="Transport">Transport</option>
+                                            <option value="Energy">Energy</option>
+                                            <option value="Food">Food</option>
+                                            <option value="Shopping">Shopping</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Activity</label>
+                                        <select id="activity-type" class="form-control" disabled>
+                                            <option value="">Select activity</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group" id="distance-group" style="display: none;">
+                                        <label class="form-label">Distance (km)</label>
+                                        <input type="number" id="activity-distance" class="form-control" min="0" step="0.1">
+                                    </div>
+                                    <button id="log-activity" class="btn btn--primary btn--full-width" disabled>
+                                        <i class="fas fa-plus"></i>
+                                        Log Activity
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Today's Impact -->
+                        <div class="tracker-section">
+                            <div class="card">
+                                <div class="card__header">
+                                    <h3>Today's Impact</h3>
+                                </div>
+                                <div class="card__body">
+                                    <div class="impact-stats">
+                                        <div class="impact-item">
+                                            <div class="impact-icon">
+                                                <i class="fas fa-leaf"></i>
+                                            </div>
+                                            <div class="impact-details">
+                                                <div class="impact-value" id="today-co2">0 kg</div>
+                                                <div class="impact-label">CO₂ Saved</div>
+                                            </div>
+                                        </div>
+                                        <div class="impact-item">
+                                            <div class="impact-icon">
+                                                <i class="fas fa-coins"></i>
+                                            </div>
+                                            <div class="impact-details">
+                                                <div class="impact-value" id="today-tokens">0</div>
+                                                <div class="impact-label">Tokens Earned</div>
+                                            </div>
+                                        </div>
+                                        <div class="impact-item">
+                                            <div class="impact-icon">
+                                                <i class="fas fa-check-circle"></i>
+                                            </div>
+                                            <div class="impact-details">
+                                                <div class="impact-value" id="today-actions">0</div>
+                                                <div class="impact-label">Actions Logged</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activities -->
+                    <div class="recent-activities">
+                        <div class="card">
+                            <div class="card__header">
+                                <h3>Recent Activities</h3>
+                                <button class="btn btn--sm btn--outline" id="clear-activities">
+                                    <i class="fas fa-trash"></i> Clear All
+                                </button>
+                            </div>
+                            <div class="card__body">
+                                <div id="activities-list" class="activities-list">
+                                    <div class="empty-state">
+                                        <i class="fas fa-seedling"></i>
+                                        <p>No activities logged yet. Start tracking to see your impact!</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Progress Chart -->
+                    <div class="progress-chart">
+                        <div class="card">
+                            <div class="card__header">
+                                <h3>Weekly Progress</h3>
+                            </div>
+                            <div class="card__body">
+                                <div class="chart-container" style="position: relative; height: 400px;">
+                                    <canvas id="progressChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MARKETPLACE PAGE -->
+        <section id="marketplace" class="page">
+            <div class="page-header">
+                <div class="container">
+                    <h1 class="page-title">Eco Marketplace</h1>
+                    <p class="page-description">Use your EcoTokens to make a positive environmental impact</p>
+                    <div class="marketplace-balance">
+                        <i class="fas fa-wallet"></i>
+                        <span>Your Balance: <strong id="marketplace-balance">0 EcoTokens</strong></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="marketplace-content">
+                <div class="container">
+                    <!-- Filter Categories -->
+                    <div class="marketplace-filters">
+                        <button class="filter-btn active" data-category="all">All Products</button>
+                        <button class="filter-btn" data-category="Carbon Offset">Carbon Offsets</button>
+                        <button class="filter-btn" data-category="Clean Energy">Clean Energy</button>
+                        <button class="filter-btn" data-category="Sustainable Products">Sustainable Products</button>
+                        <button class="filter-btn" data-category="Environmental Protection">Environmental</button>
+                    </div>
+
+                    <!-- Products Grid -->
+                    <div class="products-grid" id="products-grid">
+                        <!-- Products will be loaded dynamically -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DASHBOARD PAGE -->
+        <section id="dashboard" class="page">
+            <div class="page-header">
+                <div class="container">
+                    <h1 class="page-title">Personal Dashboard</h1>
+                    <p class="page-description">Track your environmental impact and achievements</p>
+                </div>
+            </div>
+
+            <div class="dashboard-content">
+                <div class="container">
+                    <div class="dashboard-grid">
+                        <!-- Overview Stats -->
+                        <div class="dashboard-section">
+                            <div class="card">
+                                <div class="card__header">
+                                    <h3>Overview</h3>
+                                </div>
+                                <div class="card__body">
+                                    <div class="overview-stats">
+                                        <div class="overview-item">
+                                            <div class="overview-value" id="total-co2">0 kg</div>
+                                            <div class="overview-label">Total CO₂ Saved</div>
+                                        </div>
+                                        <div class="overview-item">
+                                            <div class="overview-value" id="total-tokens">0</div>
+                                            <div class="overview-label">Total EcoTokens</div>
+                                        </div>
+                                        <div class="overview-item">
+                                            <div class="overview-value" id="total-activities">0</div>
+                                            <div class="overview-label">Total Activities</div>
+                                        </div>
+                                        <div class="overview-item">
+                                            <div class="overview-value" id="streak-days">0</div>
+                                            <div class="overview-label">Day Streak</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Achievements -->
+                        <div class="dashboard-section">
+                            <div class="card">
+                                <div class="card__header">
+                                    <h3>Achievements</h3>
+                                </div>
+                                <div class="card__body">
+                                    <div id="achievements-grid" class="achievements-grid">
+                                        <!-- Achievements will be loaded dynamically -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Impact Chart -->
+                    <div class="impact-chart">
+                        <div class="card">
+                            <div class="card__header">
+                                <h3>Monthly Impact Breakdown</h3>
+                            </div>
+                            <div class="card__body">
+                                <div class="chart-container" style="position: relative; height: 400px;">
+                                    <canvas id="impactChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- COMMUNITY PAGE -->
+        <section id="community" class="page">
+            <div class="page-header">
+                <div class="container">
+                    <h1 class="page-title">Global Community</h1>
+                    <p class="page-description">Connect with eco-warriors worldwide and join challenges</p>
+                </div>
+            </div>
+
+            <div class="community-content">
+                <div class="container">
+                    <!-- Community Feed -->
+                    <div class="community-feed">
+                        <div class="card">
+                            <div class="card__header">
+                                <h3>Live Community Feed</h3>
+                            </div>
+                            <div class="card__body">
+                                <div id="community-feed" class="feed-list">
+                                    <!-- Feed items will be loaded dynamically -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Active Challenges -->
+                    <div class="active-challenges">
+                        <div class="card">
+                            <div class="card__header">
+                                <h3>Active Challenges</h3>
+                            </div>
+                            <div class="card__body">
+                                <div class="challenges-grid" id="challenges-grid">
+                                    <!-- Challenges will be loaded dynamically -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Leaderboard -->
+                    <div class="leaderboard">
+                        <div class="card">
+                            <div class="card__header">
+                                <h3>Top EcoWarriors This Week</h3>
+                            </div>
+                            <div class="card__body">
+                                <div id="leaderboard-list" class="leaderboard-list">
+                                    <!-- Leaderboard will be loaded dynamically -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT PAGE -->
+        <section id="contact" class="page">
+            <div class="page-header">
+                <div class="container">
+                    <h1 class="page-title">Contact Us</h1>
+                    <p class="page-description">Get in touch with our team to learn more about EcoSphere</p>
+                </div>
+            </div>
+
+            <div class="contact-content">
+                <div class="container">
+                    <div class="contact-grid">
+                        <div class="contact-info">
+                            <h2>Let's Start a Conversation</h2>
+                            <p>Whether you're looking to reduce your carbon footprint or need enterprise solutions, we're here to help.</p>
+                            
+                            <div class="contact-details">
+                                <div class="contact-item">
+                                    <i class="fas fa-envelope"></i>
+                                    <span>hello@ecosphere.com</span>
+                                </div>
+                                <div class="contact-item">
+                                    <i class="fas fa-phone"></i>
+                                    <span>+91 98765 43210</span>
+                                </div>
+                                <div class="contact-item">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>Mumbai, Maharashtra, India</span>
+                                </div>
+                            </div>
+
+                            <div class="social-links">
+                                <a href="#" class="social-link" target="_blank"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="social-link" target="_blank"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" class="social-link" target="_blank"><i class="fab fa-facebook"></i></a>
+                                <a href="#" class="social-link" target="_blank"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="contact-form-container">
+                            <form class="contact-form" id="contact-form">
+                                <div class="form-group">
+                                    <label for="name" class="form-label">Full Name</label>
+                                    <input type="text" id="name" name="name" class="form-control" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="email" class="form-label">Email Address</label>
+                                    <input type="email" id="email" name="email" class="form-control" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="company" class="form-label">Company (Optional)</label>
+                                    <input type="text" id="company" name="company" class="form-control">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="message" class="form-label">Message</label>
+                                    <textarea id="message" name="message" class="form-control" rows="5" required></textarea>
+                                </div>
+                                
+                                <button type="submit" class="btn btn--primary btn--full-width">Send Message</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <i class="fas fa-globe-americas"></i>
+                        <span>EcoSphere</span>
+                    </div>
+                    <p>Small Actions. Big Impact.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Platform</h4>
+                        <a href="#tracker" data-page="tracker">Carbon Tracker</a>
+                        <a href="#marketplace" data-page="marketplace">Marketplace</a>
+                        <a href="#dashboard" data-page="dashboard">Dashboard</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Community</h4>
+                        <a href="#community" data-page="community">Global Community</a>
+                        <a href="#" target="_blank">Mobile App</a>
+                        <a href="#" target="_blank">API</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Company</h4>
+                        <a href="#contact" data-page="contact">Contact</a>
+                        <a href="#" target="_blank">Careers</a>
+                        <a href="#" target="_blank">Privacy Policy</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 EcoSphere. All rights reserved.</p>
+                <p class="copyright-watermark">Made by Ayush Banerjee</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Success Modal -->
+    <div class="modal hidden" id="success-modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Success!</h3>
+                <button class="modal-close" id="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p id="modal-message">Action completed successfully!</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn--primary" id="modal-ok">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Token Reward Animation -->
+    <div class="token-reward hidden" id="token-reward">
+        <div class="token-reward-content">
+            <i class="fas fa-coins"></i>
+            <span class="token-amount">+0</span>
+            <span class="token-text">EcoTokens!</span>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
