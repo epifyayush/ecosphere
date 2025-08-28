@@ -1,6 +1,6 @@
 EcoSphere - Interactive Carbon Footprint Tracking Platform
 🌍 Small Actions. Big Impact.
-EcoSphere is a fully functional web platform that empowers individuals and organizations to track, reduce, and offset their carbon footprint through real-time monitoring, gamification, and an innovative eco-token reward system.
+EcoSphere is a semi functional web platform that empowers individuals and organizations to track, reduce, and offset their carbon footprint through real-time monitoring, gamification, and an innovative eco-token reward system.
 
 ✨ Key Features
 🔄 Real-Time Carbon Tracking
